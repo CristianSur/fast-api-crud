@@ -5,14 +5,14 @@
 docker-compose up
 ```
 
-### Delete all containers and images
+### Delete all containers
 ```
-docker-compose down --rmi all
+docker-compose down
 ```
 
-###### In case you need to delete only containers don't use --rmi all
+###### Add --rmi all to delete all images too
 
-### Specific build of image (when we want to save Database)
+### Build or rebuild of image
 ```
 docker build -t fastapi-app .
 ```
