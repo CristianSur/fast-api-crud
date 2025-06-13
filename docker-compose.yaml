@@ -1,0 +1,26 @@
+version: '3.9'
+services:
+  db:
+    image: postgres:latest
+    container_name: fastapi_postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: dev
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U user" ]
+      interval: 2s
+      timeout: 2s
+      retries: 10
+  app:
+    build:
+      context: .              # Path to your Dockerfile (usually project root)
+      dockerfile: Dockerfile  # Optional if the file is named 'Dockerfile'
+    ports:
+      - "8000:8000"
+    container_name: fastapi-app
+    depends_on:
+      db:
+        condition: service_healthy #the app will wait till the database is ready to use before starting
