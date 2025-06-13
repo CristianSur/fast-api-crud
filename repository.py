@@ -9,9 +9,11 @@ def get_by_id(db: Session, product_id: int):
     stmt = select(Product).where(Product.id == product_id)
     return db.execute(stmt).scalar_one_or_none()
 
+
 def get_all(db: Session):
     stmt = select(Product)
     return db.execute(stmt).scalars().all()
+
 
 def create_product(db: Session, product: schemas.ProductCreate):
     db_product = Product(**product.model_dump())
