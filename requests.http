@@ -1,9 +1,11 @@
 # Test your FastAPI endpoints
+@HOST=http://localhost:8000
+
 ###Get all products
-GET http://localhost:8000/products
+GET {{HOST}}/products
 
 ###Create new product
-POST http://localhost:8000/products
+POST {{HOST}}/products
 Content-Type: application/json
 
 {
@@ -13,4 +15,4 @@ Content-Type: application/json
 
 ###Get a specific product
 @product_id=1
-GET http://localhost:8000/products/{{product_id}}
+GET {{HOST}}/products/{{product_id}}
